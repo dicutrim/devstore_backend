@@ -1,0 +1,5 @@
+INSERT INTO tb_product (name, description, price, image_url) VALUES ('PC Gamer', 'PC Gamer TurboX, Intel i5-14400F, GeForce RTX 2070 8GB, 16GB DDR4, SSD M.2 480GB', 3.646, 'https://porfoliodevstore.com/pcgamerturbo');
+INSERT INTO tb_product (name, description, price, image_url) VALUES ('SmartWatch', 'Monitoramento Completo de Exercícios,Gerenciamento Abrangente da Saúde,Até 10 dias de bateria,Sistema GPS integrado,Compatível com iOS e Android', 866.0, 'https://porfoliodevstore.com/smartwatch');
+INSERT INTO tb_product (name, description, price, image_url) VALUES ('Mouse sem fio Logi-X', 'M170 com Design Ambidestro Compacto, Conexão USB e Pilha Inclusa', 66.9, 'https://porfoliodevstore.com/mouselogix');
+INSERT INTO tb_product (name, description, price, image_url) VALUES ('Impressora EcoTanky L3250', 'Multifuncional, Tanque de Tinta Colorida, Wi-Fi Direct, USB, Bivolt, Preto', 1.049, 'https://porfoliodevstore.com/impressoramulti');
+INSERT INTO tb_product (name, description, price, image_url) VALUES ('SmarTV - T350', 'Monitor Gamer, 24", FHD, 75Hz, HDMI, VGA, Freesync, Preto', 2449.8, 'https://porfoliodevstore.com/smartv350');
