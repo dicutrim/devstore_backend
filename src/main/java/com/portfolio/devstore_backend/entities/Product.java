@@ -5,8 +5,10 @@ import jakarta.persistence.*;
 
 import java.util.Set;
 import java.io.Serial;
+import java.util.List;
 import java.util.HashSet;
 import java.io.Serializable;
+import java.util.stream.Collectors;
 
 @Data
 @Builder
@@ -39,4 +41,12 @@ public class Product implements Serializable {
     @Setter(AccessLevel.NONE)
     @ManyToMany(mappedBy = "products", fetch = FetchType.LAZY)
     private Set<Category> categories = new HashSet<>();
+
+    @Setter(AccessLevel.NONE)
+    @OneToMany(mappedBy = "id.product")
+    private Set<OrderItem> orderItems = new HashSet<>();
+
+    private List<Order> getOrders() {
+        return orderItems.stream().map(OrderItem::getOrder).collect(Collectors.toList());
+    }
 }

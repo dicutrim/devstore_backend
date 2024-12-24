@@ -5,9 +5,13 @@ import com.portfolio.devstore_backend.enums.OrderStatus;
 import lombok.*;
 import jakarta.persistence.*;
 
+import java.util.Set;
 import java.io.Serial;
+import java.util.List;
 import java.time.Instant;
+import java.util.HashSet;
 import java.io.Serializable;
+import java.util.stream.Collectors;
 
 @Data
 @Builder
@@ -39,4 +43,12 @@ public class Order implements Serializable {
 
     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
     private Payment payment;
+
+    @Setter(AccessLevel.NONE)
+    @OneToMany(mappedBy = "id.order")
+    private Set<OrderItem> orderItems = new HashSet<>();
+
+    private List<Product> getProducts() {
+        return orderItems.stream().map(OrderItem::getProduct).collect(Collectors.toList());
+    }
 }
