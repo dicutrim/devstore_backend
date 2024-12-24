@@ -1,11 +1,13 @@
 package com.portfolio.devstore_backend.services.impl;
 
-import com.portfolio.devstore_backend.mapper.ProductMapper;
-import com.portfolio.devstore_backend.repositories.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.portfolio.devstore_backend.dto.ProductDTO;
+import com.portfolio.devstore_backend.mapper.ProductMapper;
 import com.portfolio.devstore_backend.services.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+import com.portfolio.devstore_backend.repositories.ProductRepository;
+import com.portfolio.devstore_backend.Exceptions.ResourceNotFoundException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,17 +24,18 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<ProductDTO> getAll() {
-        return productRepository
-                .findAll()
-                .stream()
-                .map(ProductMapper::fromEntityToDto)
+        return productRepository.findAll().stream().map(ProductMapper::fromEntityToDto)
                 .collect(Collectors.toList());
     }
 
     @Override
+    @Transactional(readOnly = true)
     public ProductDTO getOne(Long id) {
-        return null;
+        var productOpt = productRepository.findById(id);
+        if (productOpt.isEmpty()) throw new ResourceNotFoundException("Resource not found");
+        return ProductMapper.fromEntityToDto(productOpt.get());
     }
 
     @Override
